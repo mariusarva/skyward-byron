@@ -30,7 +30,7 @@ why its configuration leaves the weaver out and the 17 Max's does not.
 ```
 git checkout byron
 SKYWARD_SRC=<the skyward 0.3.1 tree with the pudding patch applied> \
-  byron/mk.sh 0.3.12 /path/to/byron-stock-recovery.img
+  byron/mk.sh 0.3.15 /path/to/byron-stock-recovery.img
 ```
 
 `stock-recovery.img` is the phone's own recovery partition, read out of its
