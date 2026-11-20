@@ -10,3 +10,5 @@ The build is versioned with the main line (`0.3.12` here is the same source as
 pudding's `v0.3.12`), and its online update is off: the repository's releases
 carry the 17's image, not this phone's.
 | v0.3.16 | 控制中心 12 个圆磁贴（3 行 4 列）+ 设备状态卡，时间与日期同一行；内置 AOSP 拼音输入；新增分区管理页；高级页精简、长页可滚动；修复磁贴命中与解密页间距（2026-11-19） |
+
+| v0.3.17 | 磁贴标签 10dp；任务页、镜像备份、关机页、vbmeta 备份、息屏显示；本版不含浏览器（2026-11-20） |
