@@ -2,6 +2,7 @@
 
 | version | state |
 |---|---|
+| v0.3.28 | 控制中心磁贴可自定义：长按磁贴进入编辑态、拖拽排序、点叉移除、候选区添加；磁贴 12 → 24；摆法存 `/metadata/skyward/tiles`（2026-11-22） |
 | 0.0.36 | first build that opened the data partition, made 2026-11-16 on a shell that carried the 24 files already |
 | 0.3.15 | the app list gains a read-only page for the system apps; the WLAN's driver is warmed as soon as its firmware is mounted, and the home page says “connecting” while the radio opens (2026-11-18) |
 | 0.3.12 | rebuilt on the shared source line; the packing script had to learn to copy `[[file]]` before it worked (2026-11-17) |
