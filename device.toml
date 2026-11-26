@@ -212,3 +212,16 @@ path = "/system/bin/sh"
 args = ["/skyward/weaver-nxp.sh"]
 user = "root"
 groups = ["root"]
+
+# 表情字体：页面上的 emoji 从 /skyward 下取，和 17 那条线同一份（2026-11-26 补齐）。
+[[file]]
+path = "skyward/NotoColorEmoji.ttf"
+source = "devices/byron/files/skyward/NotoColorEmoji.ttf"
+
+[[file]]
+path = "skyward/NotoColorEmojiFlags.ttf"
+source = "devices/byron/files/skyward/NotoColorEmojiFlags.ttf"
+
+[[file]]
+path = "skyward/NotoColorEmoji-OFL.txt"
+source = "devices/byron/files/skyward/NotoColorEmoji-OFL.txt"
