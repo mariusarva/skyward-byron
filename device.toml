@@ -101,6 +101,24 @@ recovery = "8a167311d5c2c90f515ecb1f738154cd55159672a80fcf7fe56cedd214eb709a"
 resonance = "/sys/class/qcom-haptics/lra_frequency_hz"
 strength = { lightest = 0.25, strongest = 0.75 }
 
+# The baseband's settings with the phone's own identity, and the sensors'
+# calibration, which the phone's own recovery backs up too: modemst1 and
+# modemst2 hold the modem's own storage, fsg the factory settings it falls
+# back on, fsc the counters beside them, and persist the MAC addresses, the
+# sensors' calibration and the WLAN's own files. Losing them means a trip to
+# the maker's service centre (2026-11-26).
+[backup]
+efs = ["modemst1", "modemst2", "fsg", "fsc", "persist"]
+data_skipped = [
+    "vendor/tzstorage",
+    "vendor/qtee",
+    "vendor/mitee",
+    "vendor/goodix",
+    "vendor/fingerprint",
+    "vendor/fpdata",
+    "vendor/misc/mi_fp",
+]
+
 # 解密链：本机系统的 libdl_android.so 只是指向 /apex/... 的软链，recovery 不挂
 # APEX，所以把能解密的那份 recovery（YAPR）里的 weaver 与它依赖的库一起带进来，
 # 放在 /skyward 下，不覆盖 /system/lib64，免得影响其他进程。
