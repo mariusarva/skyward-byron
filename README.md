@@ -11,6 +11,15 @@ byron/
   mk.sh           builds the binary and packs the image
 ```
 
+## 0.5.9 起
+
+二进制与 pudding 线是同一份源码（Root 管理、模块管理、Kinaxie 的服务与合并修复都在里面），
+差别只在这份 `device.toml` 与 `files/`；Root 的素材（ksud、KMI 模块、两个管理器 APK）
+不随包分发，写入时从 GitHub 取，需要联网。
+
+`mk.sh` 2026-11-26 修过一处：原厂镜像自己的 vbmeta 在「它自己的」页对齐位置上，
+ramdisk 一变长就不能拿新地址去读，否则打出来的镜像里没有 AVB0。
+
 ## How it differs from the 17 (pudding)
 
 | | 17 (pudding) | 17 Max (byron) |

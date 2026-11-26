@@ -2,6 +2,7 @@
 
 | version | state |
 |---|---|
+| v0.5.9 | 与 pudding 0.5.9 同源：Root 管理（在线装 KernelSU / Magisk，写前备份原厂 boot，只升不降，卡上显示百分比与速度、滑回即取消）；模块管理换成 KernelSU/Magisk 那一套；合并 Kinaxie 的服务复用与 optional、解密现场、解锁多处读、keep 双槽、快照未合并不许离开；修 mk.sh 取原厂 vbmeta 的地址（ramdisk 变长后原来读到空洞，镜像里没有 AVB0，2026-11-26） |
 | v0.5.1 | 整体升级到上游 v0.5.0：payload 进度只算 payload 字节、未加密 data 可直接打开、刷 super/逻辑分区/稀疏镜像、备份恢复到新建分区、62 个时区；语言表裁到三种；修 Wi-Fi 手动连上后重复 join 导致 DHCP 失败的旧 bug（2026-11-23） |
 | 0.0.36 | first build that opened the data partition, made 2026-11-16 on a shell that carried the 24 files already |
 | 0.3.15 | the app list gains a read-only page for the system apps; the WLAN's driver is warmed as soon as its firmware is mounted, and the home page says “connecting” while the radio opens (2026-11-18) |

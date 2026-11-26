@@ -61,7 +61,12 @@ struct.pack_into('<I', header, 0x62c, 0)
 image = bytes(header) + b'\x00' * ((-1584) % 4096) + raw
 image += b'\x00' * ((-len(image)) % 4096)
 L = ((4096 + len(raw)) + 4095) // 4096 * 4096
-vbmeta = bytearray(orig[L:L + 512])
+# 原厂镜像自己的 vbmeta 在它自己的 L 上：ramdisk 一变长，拿新 L 去读就会读到
+# 尾巴前的空洞，于是新镜像里根本没有 AVB0（2026-11-26 修）。
+stock_ramdisk = struct.unpack_from('<I', orig, 12)[0]
+L_stock = ((4096 + stock_ramdisk) + 4095) // 4096 * 4096
+vbmeta = bytearray(orig[L_stock:L_stock + 512])
+assert vbmeta[:4] == b'AVB0', 'the stock recovery has no vbmeta at %d' % L_stock
 footer = bytearray(orig[-64:])
 struct.pack_into('>Q', vbmeta, 256 + 16, L)
 vbmeta[256 + 140:256 + 172] = hashlib.sha256(image[:L]).digest()
