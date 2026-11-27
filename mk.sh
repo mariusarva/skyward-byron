@@ -9,10 +9,21 @@
 # produces an image whose secure element service dies on its libraries and whose
 # data partition therefore never opens (2026-11-17).
 set -e
-REL="$1"; STOCK="$2"; NAME=${3:-skyward-byron-$REL-OS4.0.3.0.XAFCNXM.img}
+REL="$1"; STOCK="$2"
+# 2026-11-27：默认产物名以前是相对名，而脚本 cd 进了 mktemp -d，
+# 末尾 cp out.img "$NAME" 会把包写进临时目录、随 trap 一起删掉。
+# 默认改为共享区绝对路径，并把「必须绝对」写成断言。
+NAME=${3:-/storage/emulated/0/MT2/mcp/产物/测试版/skyward-byron-$REL-OS4.0.3.0.XAFCNXM.img}
+case "$NAME" in
+    /*) : ;;
+    *) echo "产物名必须是绝对路径（脚本在 mktemp 目录里打包，相对名会被删）：$NAME" >&2; exit 1 ;;
+esac
 [ -f "$STOCK" ] || { echo "no stock recovery at $STOCK" >&2; exit 1; }
 HERE=$(cd "$(dirname "$0")" && pwd)
-SRC=${SKYWARD_SRC:-$HERE/../..}
+# 2026-11-27：默认值以前是 $HERE/../.. = /workspace/项目（不是 cargo 工程），
+# 不设 SKYWARD_SRC 直接失败；改成构建树，并核一眼 Cargo.toml。
+SRC=${SKYWARD_SRC:-/workspace/项目/第三方REC-pudding/构建/skyward-0.5.0}
+[ -f "$SRC/Cargo.toml" ] || { echo "$SRC 不是 cargo 工作区，设 SKYWARD_SRC 指到构建树" >&2; exit 1; }
 export TZ=Asia/Shanghai
 WORK=$(mktemp -d); trap 'rm -rf "$WORK"' EXIT
 cd "$SRC"
